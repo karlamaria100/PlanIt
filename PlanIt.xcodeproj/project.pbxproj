@@ -7,6 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9929A55420C7099D002D35F8 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9929A55320C7099D002D35F8 /* CategoryView.swift */; };
+		9929A55620C85168002D35F8 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 9929A55520C85168002D35F8 /* .gitignore */; };
+		9945CA3B20C44E18003577CB /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9945CA3520C44E17003577CB /* OpenSans-Italic.ttf */; };
+		9945CA3C20C44E18003577CB /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9945CA3620C44E17003577CB /* OpenSans-LightItalic.ttf */; };
+		9945CA3D20C44E18003577CB /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9945CA3720C44E17003577CB /* OpenSans-Regular.ttf */; };
+		9945CA3E20C44E18003577CB /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9945CA3820C44E18003577CB /* OpenSans-SemiBoldItalic.ttf */; };
+		9945CA3F20C44E18003577CB /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9945CA3920C44E18003577CB /* OpenSans-Light.ttf */; };
+		9945CA4020C44E18003577CB /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9945CA3A20C44E18003577CB /* OpenSans-SemiBold.ttf */; };
+		9945CA4520C44E25003577CB /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9945CA4120C44E24003577CB /* OpenSans-Bold.ttf */; };
+		9945CA4620C44E25003577CB /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9945CA4220C44E24003577CB /* OpenSans-BoldItalic.ttf */; };
+		9945CA4720C44E25003577CB /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9945CA4320C44E25003577CB /* OpenSans-ExtraBoldItalic.ttf */; };
+		9945CA4820C44E25003577CB /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9945CA4420C44E25003577CB /* OpenSans-ExtraBold.ttf */; };
+		9945CA4A20C4BC5C003577CB /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9945CA4920C4BC5C003577CB /* NewsTableViewCell.swift */; };
+		9945CA4C20C4BC9E003577CB /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9945CA4B20C4BC9E003577CB /* NewsTableViewController.swift */; };
+		9949FD7120BE82F300677B0E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD7020BE82F300677B0E /* CalendarViewController.swift */; };
+		9949FD7320BEB45800677B0E /* ProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD7220BEB45700677B0E /* ProjectViewController.swift */; };
+		9949FD7520BF201A00677B0E /* ProjectSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD7420BF201A00677B0E /* ProjectSearchController.swift */; };
+		9949FD7720C0309800677B0E /* PublicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD7620C0309800677B0E /* PublicViewController.swift */; };
+		9949FD7920C03F8000677B0E /* PublicCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD7820C03F8000677B0E /* PublicCellCollectionViewCell.swift */; };
+		9949FD7B20C041A000677B0E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD7A20C041A000677B0E /* Category.swift */; };
+		9949FD7D20C198FC00677B0E /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD7C20C198FC00677B0E /* CategoryTableViewController.swift */; };
+		9949FD8020C19E9C00677B0E /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD7F20C19E9C00677B0E /* UsersTableViewController.swift */; };
+		9949FD8220C19F7600677B0E /* TasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD8120C19F7600677B0E /* TasksTableViewController.swift */; };
+		9949FD8420C19FDA00677B0E /* ListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD8320C19FDA00677B0E /* ListsTableViewController.swift */; };
+		9949FD8620C19FEF00677B0E /* FoldersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD8520C19FEF00677B0E /* FoldersTableViewController.swift */; };
+		9949FD8820C1A18D00677B0E /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD8720C1A18D00677B0E /* Task.swift */; };
+		9949FD8A20C1A19C00677B0E /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD8920C1A19C00677B0E /* List.swift */; };
+		9949FD8C20C1A1B000677B0E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD8B20C1A1B000677B0E /* User.swift */; };
+		9949FD9020C1A1CB00677B0E /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD8F20C1A1CB00677B0E /* Folder.swift */; };
+		9949FD9220C1AB3D00677B0E /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD9120C1AB3D00677B0E /* UserTableViewCell.swift */; };
+		9949FD9420C1B02900677B0E /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD9320C1B02900677B0E /* TaskTableViewCell.swift */; };
+		9949FD9620C1B1AB00677B0E /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD9520C1B1AB00677B0E /* ListTableViewCell.swift */; };
+		9949FD9820C1B4B800677B0E /* FolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD9720C1B4B800677B0E /* FolderTableViewCell.swift */; };
+		9949FD9A20C2883800677B0E /* FilesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD9920C2883800677B0E /* FilesCollectionViewController.swift */; };
+		9949FD9C20C3535300677B0E /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD9B20C3535300677B0E /* ListTableViewController.swift */; };
+		9949FD9E20C353A100677B0E /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD9D20C353A100677B0E /* ListItem.swift */; };
+		9949FDA020C353F900677B0E /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FD9F20C353F900677B0E /* ListItemTableViewCell.swift */; };
+		9949FDA220C3D5E400677B0E /* InsertRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FDA120C3D5E400677B0E /* InsertRowTableViewCell.swift */; };
+		9949FDA420C3F6EA00677B0E /* GardientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949FDA320C3F6EA00677B0E /* GardientView.swift */; };
 		995BA06220AF060C005A3104 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995BA06120AF060C005A3104 /* AppDelegate.swift */; };
 		995BA06420AF060C005A3104 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995BA06320AF060C005A3104 /* ViewController.swift */; };
 		995BA06720AF060C005A3104 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 995BA06520AF060C005A3104 /* Main.storyboard */; };
@@ -15,6 +54,22 @@
 		995BA06F20AF060E005A3104 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 995BA06D20AF060E005A3104 /* LaunchScreen.storyboard */; };
 		995BA07A20AF060E005A3104 /* PlanItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995BA07920AF060E005A3104 /* PlanItTests.swift */; };
 		995BA08520AF060E005A3104 /* PlanItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995BA08420AF060E005A3104 /* PlanItUITests.swift */; };
+		995BA09320AF0F01005A3104 /* podFile in Resources */ = {isa = PBXBuildFile; fileRef = 995BA09220AF0F01005A3104 /* podFile */; };
+		995BA09720AF252B005A3104 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995BA09620AF252B005A3104 /* MainViewController.swift */; };
+		997169B920AF36F000359A72 /* ProjectsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997169B820AF36F000359A72 /* ProjectsTableViewController.swift */; };
+		997169BB20AF4E5300359A72 /* Projects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997169BA20AF4E5300359A72 /* Projects.swift */; };
+		997169C120B096A900359A72 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997169C020B096A900359A72 /* HomeViewController.swift */; };
+		997169C520B0BC8D00359A72 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997169C420B0BC8D00359A72 /* ProjectTableViewCell.swift */; };
+		9996139120BC5B9D009C43B8 /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9996139020BC5B9D009C43B8 /* DesignableView.swift */; };
+		9996139320BCA405009C43B8 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9996139220BCA405009C43B8 /* CalendarCell.swift */; };
+		99C07A9C20B33DB80078C5AB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C07A9B20B33DB80078C5AB /* ProfileViewController.swift */; };
+		99C07A9E20B4EB000078C5AB /* AdminTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C07A9D20B4EAFF0078C5AB /* AdminTableViewCell.swift */; };
+		99C07AA420B978790078C5AB /* GROBOLD.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99C07AA320B978780078C5AB /* GROBOLD.ttf */; };
+		99C07AA620B9D3020078C5AB /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C07AA520B9D3020078C5AB /* ProfileTableViewController.swift */; };
+		99C07AAA20B9E4560078C5AB /* AdminProjectCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C07AA920B9E4560078C5AB /* AdminProjectCollectionViewController.swift */; };
+		99C07AAC20BAA5CD0078C5AB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C07AAB20BAA5CD0078C5AB /* SettingsTableViewController.swift */; };
+		99FFC95220BAFD4F00ADC288 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FFC95120BAFD4F00ADC288 /* AddViewController.swift */; };
+		A06E56C80F49692000A11702 /* Pods_PlanIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79FF8C87D00348ED77DB9C4 /* Pods_PlanIt.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +90,46 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		90976ED7CCD013FD1E84FC7C /* Pods-PlanIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanIt.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlanIt/Pods-PlanIt.release.xcconfig"; sourceTree = "<group>"; };
+		9929A55320C7099D002D35F8 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		9929A55520C85168002D35F8 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		9945CA3520C44E17003577CB /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		9945CA3620C44E17003577CB /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		9945CA3720C44E17003577CB /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		9945CA3820C44E18003577CB /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		9945CA3920C44E18003577CB /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		9945CA3A20C44E18003577CB /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		9945CA4120C44E24003577CB /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		9945CA4220C44E24003577CB /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		9945CA4320C44E25003577CB /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		9945CA4420C44E25003577CB /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		9945CA4920C4BC5C003577CB /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		9945CA4B20C4BC9E003577CB /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
+		9949FD7020BE82F300677B0E /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		9949FD7220BEB45700677B0E /* ProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewController.swift; sourceTree = "<group>"; };
+		9949FD7420BF201A00677B0E /* ProjectSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSearchController.swift; sourceTree = "<group>"; };
+		9949FD7620C0309800677B0E /* PublicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicViewController.swift; sourceTree = "<group>"; };
+		9949FD7820C03F8000677B0E /* PublicCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		9949FD7A20C041A000677B0E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		9949FD7C20C198FC00677B0E /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		9949FD7F20C19E9C00677B0E /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
+		9949FD8120C19F7600677B0E /* TasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewController.swift; sourceTree = "<group>"; };
+		9949FD8320C19FDA00677B0E /* ListsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsTableViewController.swift; sourceTree = "<group>"; };
+		9949FD8520C19FEF00677B0E /* FoldersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersTableViewController.swift; sourceTree = "<group>"; };
+		9949FD8720C1A18D00677B0E /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		9949FD8920C1A19C00677B0E /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		9949FD8B20C1A1B000677B0E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9949FD8F20C1A1CB00677B0E /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		9949FD9120C1AB3D00677B0E /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		9949FD9320C1B02900677B0E /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		9949FD9520C1B1AB00677B0E /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		9949FD9720C1B4B800677B0E /* FolderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderTableViewCell.swift; sourceTree = "<group>"; };
+		9949FD9920C2883800677B0E /* FilesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesCollectionViewController.swift; sourceTree = "<group>"; };
+		9949FD9B20C3535300677B0E /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
+		9949FD9D20C353A100677B0E /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
+		9949FD9F20C353F900677B0E /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemTableViewCell.swift; sourceTree = "<group>"; };
+		9949FDA120C3D5E400677B0E /* InsertRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertRowTableViewCell.swift; sourceTree = "<group>"; };
+		9949FDA320C3F6EA00677B0E /* GardientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardientView.swift; sourceTree = "<group>"; };
 		995BA05E20AF060C005A3104 /* PlanIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlanIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		995BA06120AF060C005A3104 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		995BA06320AF060C005A3104 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +144,24 @@
 		995BA08020AF060E005A3104 /* PlanItUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlanItUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		995BA08420AF060E005A3104 /* PlanItUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanItUITests.swift; sourceTree = "<group>"; };
 		995BA08620AF060E005A3104 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		995BA09220AF0F01005A3104 /* podFile */ = {isa = PBXFileReference; lastKnownFileType = text; path = podFile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		995BA09620AF252B005A3104 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		997169B720AF2DC500359A72 /* PlanIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PlanIt.entitlements; sourceTree = "<group>"; };
+		997169B820AF36F000359A72 /* ProjectsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTableViewController.swift; sourceTree = "<group>"; };
+		997169BA20AF4E5300359A72 /* Projects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projects.swift; sourceTree = "<group>"; };
+		997169C020B096A900359A72 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		997169C420B0BC8D00359A72 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
+		9996139020BC5B9D009C43B8 /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
+		9996139220BCA405009C43B8 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		99C07A9B20B33DB80078C5AB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		99C07A9D20B4EAFF0078C5AB /* AdminTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminTableViewCell.swift; sourceTree = "<group>"; };
+		99C07AA320B978780078C5AB /* GROBOLD.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = GROBOLD.ttf; path = ../../../Downloads/GROBOLD.ttf; sourceTree = "<group>"; };
+		99C07AA520B9D3020078C5AB /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		99C07AA920B9E4560078C5AB /* AdminProjectCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminProjectCollectionViewController.swift; sourceTree = "<group>"; };
+		99C07AAB20BAA5CD0078C5AB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		99FFC95120BAFD4F00ADC288 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		B79FF8C87D00348ED77DB9C4 /* Pods_PlanIt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanIt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7B26BFF41BACD47994C6D80 /* Pods-PlanIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanIt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlanIt/Pods-PlanIt.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A06E56C80F49692000A11702 /* Pods_PlanIt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,13 +190,65 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		305693D701579698AB18A040 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E7B26BFF41BACD47994C6D80 /* Pods-PlanIt.debug.xcconfig */,
+				90976ED7CCD013FD1E84FC7C /* Pods-PlanIt.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9929A55220C70984002D35F8 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				9996139020BC5B9D009C43B8 /* DesignableView.swift */,
+				9929A55320C7099D002D35F8 /* CategoryView.swift */,
+				9949FDA320C3F6EA00677B0E /* GardientView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		9945CA3420C44DE7003577CB /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				9945CA4120C44E24003577CB /* OpenSans-Bold.ttf */,
+				9945CA4220C44E24003577CB /* OpenSans-BoldItalic.ttf */,
+				9945CA4420C44E25003577CB /* OpenSans-ExtraBold.ttf */,
+				9945CA4320C44E25003577CB /* OpenSans-ExtraBoldItalic.ttf */,
+				9945CA3520C44E17003577CB /* OpenSans-Italic.ttf */,
+				9945CA3920C44E18003577CB /* OpenSans-Light.ttf */,
+				9945CA3620C44E17003577CB /* OpenSans-LightItalic.ttf */,
+				9945CA3720C44E17003577CB /* OpenSans-Regular.ttf */,
+				9945CA3A20C44E18003577CB /* OpenSans-SemiBold.ttf */,
+				9945CA3820C44E18003577CB /* OpenSans-SemiBoldItalic.ttf */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		9949FD7E20C19E7600677B0E /* categories */ = {
+			isa = PBXGroup;
+			children = (
+				9949FD7F20C19E9C00677B0E /* UsersTableViewController.swift */,
+				9949FD8120C19F7600677B0E /* TasksTableViewController.swift */,
+				9949FD8320C19FDA00677B0E /* ListsTableViewController.swift */,
+				9949FD8520C19FEF00677B0E /* FoldersTableViewController.swift */,
+				9949FD9B20C3535300677B0E /* ListTableViewController.swift */,
+			);
+			path = categories;
+			sourceTree = "<group>";
+		};
 		995BA05520AF060C005A3104 = {
 			isa = PBXGroup;
 			children = (
+				9929A55520C85168002D35F8 /* .gitignore */,
+				995BA09220AF0F01005A3104 /* podFile */,
 				995BA06020AF060C005A3104 /* PlanIt */,
 				995BA07820AF060E005A3104 /* PlanItTests */,
 				995BA08320AF060E005A3104 /* PlanItUITests */,
 				995BA05F20AF060C005A3104 /* Products */,
+				305693D701579698AB18A040 /* Pods */,
+				BC6B5A594DEBEB8BA0459E71 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +265,20 @@
 		995BA06020AF060C005A3104 /* PlanIt */ = {
 			isa = PBXGroup;
 			children = (
-				995BA06120AF060C005A3104 /* AppDelegate.swift */,
+				9929A55220C70984002D35F8 /* views */,
+				9945CA3420C44DE7003577CB /* resources */,
+				99C07AA220B978440078C5AB /* fonts */,
+				99C07A9F20B9646B0078C5AB /* cells */,
+				997169B720AF2DC500359A72 /* PlanIt.entitlements */,
 				995BA06320AF060C005A3104 /* ViewController.swift */,
 				995BA06520AF060C005A3104 /* Main.storyboard */,
 				995BA06B20AF060E005A3104 /* Assets.xcassets */,
 				995BA06D20AF060E005A3104 /* LaunchScreen.storyboard */,
 				995BA07020AF060E005A3104 /* Info.plist */,
 				995BA06820AF060C005A3104 /* PlanIt.xcdatamodeld */,
+				995BA06120AF060C005A3104 /* AppDelegate.swift */,
+				997169BF20AF4EC100359A72 /* controllers */,
+				997169BE20AF4EA300359A72 /* models */,
 			);
 			path = PlanIt;
 			sourceTree = "<group>";
@@ -128,6 +301,78 @@
 			path = PlanItUITests;
 			sourceTree = "<group>";
 		};
+		997169BE20AF4EA300359A72 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				997169BA20AF4E5300359A72 /* Projects.swift */,
+				9949FD7A20C041A000677B0E /* Category.swift */,
+				9949FD8720C1A18D00677B0E /* Task.swift */,
+				9949FD8920C1A19C00677B0E /* List.swift */,
+				9949FD8B20C1A1B000677B0E /* User.swift */,
+				9949FD8F20C1A1CB00677B0E /* Folder.swift */,
+				9949FD9D20C353A100677B0E /* ListItem.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		997169BF20AF4EC100359A72 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9949FD7E20C19E7600677B0E /* categories */,
+				99C07AAB20BAA5CD0078C5AB /* SettingsTableViewController.swift */,
+				99C07AA920B9E4560078C5AB /* AdminProjectCollectionViewController.swift */,
+				99C07AA520B9D3020078C5AB /* ProfileTableViewController.swift */,
+				995BA09620AF252B005A3104 /* MainViewController.swift */,
+				99FFC95120BAFD4F00ADC288 /* AddViewController.swift */,
+				997169B820AF36F000359A72 /* ProjectsTableViewController.swift */,
+				9949FD7220BEB45700677B0E /* ProjectViewController.swift */,
+				9949FD7020BE82F300677B0E /* CalendarViewController.swift */,
+				997169C020B096A900359A72 /* HomeViewController.swift */,
+				99C07A9B20B33DB80078C5AB /* ProfileViewController.swift */,
+				9949FD7420BF201A00677B0E /* ProjectSearchController.swift */,
+				9949FD7620C0309800677B0E /* PublicViewController.swift */,
+				9949FD7C20C198FC00677B0E /* CategoryTableViewController.swift */,
+				9949FD9920C2883800677B0E /* FilesCollectionViewController.swift */,
+				9945CA4B20C4BC9E003577CB /* NewsTableViewController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		99C07A9F20B9646B0078C5AB /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				9996139220BCA405009C43B8 /* CalendarCell.swift */,
+				99C07A9D20B4EAFF0078C5AB /* AdminTableViewCell.swift */,
+				997169C420B0BC8D00359A72 /* ProjectTableViewCell.swift */,
+				9949FD7820C03F8000677B0E /* PublicCellCollectionViewCell.swift */,
+				9949FD9120C1AB3D00677B0E /* UserTableViewCell.swift */,
+				9949FD9320C1B02900677B0E /* TaskTableViewCell.swift */,
+				9949FD9520C1B1AB00677B0E /* ListTableViewCell.swift */,
+				9949FD9720C1B4B800677B0E /* FolderTableViewCell.swift */,
+				9949FD9F20C353F900677B0E /* ListItemTableViewCell.swift */,
+				9949FDA120C3D5E400677B0E /* InsertRowTableViewCell.swift */,
+				9945CA4920C4BC5C003577CB /* NewsTableViewCell.swift */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		99C07AA220B978440078C5AB /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				99C07AA320B978780078C5AB /* GROBOLD.ttf */,
+			);
+			name = fonts;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		BC6B5A594DEBEB8BA0459E71 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B79FF8C87D00348ED77DB9C4 /* Pods_PlanIt.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +380,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 995BA08920AF060E005A3104 /* Build configuration list for PBXNativeTarget "PlanIt" */;
 			buildPhases = (
+				209E0DEF92A215BC30F9C1AD /* [CP] Check Pods Manifest.lock */,
 				995BA05A20AF060C005A3104 /* Sources */,
 				995BA05B20AF060C005A3104 /* Frameworks */,
 				995BA05C20AF060C005A3104 /* Resources */,
+				2F18B00045FE4FFDE0584F88 /* [CP] Embed Pods Frameworks */,
+				7579E39064340793E14F072A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -196,6 +444,11 @@
 				TargetAttributes = {
 					995BA05D20AF060C005A3104 = {
 						CreatedOnToolsVersion = 9.3.1;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					995BA07420AF060E005A3104 = {
 						CreatedOnToolsVersion = 9.3.1;
@@ -232,9 +485,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9929A55620C85168002D35F8 /* .gitignore in Resources */,
+				9945CA3E20C44E18003577CB /* OpenSans-SemiBoldItalic.ttf in Resources */,
+				9945CA4720C44E25003577CB /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				995BA06F20AF060E005A3104 /* LaunchScreen.storyboard in Resources */,
+				9945CA4520C44E25003577CB /* OpenSans-Bold.ttf in Resources */,
+				9945CA4020C44E18003577CB /* OpenSans-SemiBold.ttf in Resources */,
 				995BA06C20AF060E005A3104 /* Assets.xcassets in Resources */,
+				9945CA3C20C44E18003577CB /* OpenSans-LightItalic.ttf in Resources */,
+				995BA09320AF0F01005A3104 /* podFile in Resources */,
+				9945CA3B20C44E18003577CB /* OpenSans-Italic.ttf in Resources */,
+				9945CA4620C44E25003577CB /* OpenSans-BoldItalic.ttf in Resources */,
+				99C07AA420B978790078C5AB /* GROBOLD.ttf in Resources */,
+				9945CA3D20C44E18003577CB /* OpenSans-Regular.ttf in Resources */,
+				9945CA3F20C44E18003577CB /* OpenSans-Light.ttf in Resources */,
 				995BA06720AF060C005A3104 /* Main.storyboard in Resources */,
+				9945CA4820C44E25003577CB /* OpenSans-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,14 +520,134 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		209E0DEF92A215BC30F9C1AD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PlanIt-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2F18B00045FE4FFDE0584F88 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-PlanIt/Pods-PlanIt-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/DateTimePicker/DateTimePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/ImageLoader/ImageLoader.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateTimePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageLoader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PlanIt/Pods-PlanIt-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7579E39064340793E14F072A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-PlanIt/Pods-PlanIt-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PlanIt/Pods-PlanIt-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		995BA05A20AF060C005A3104 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99C07AAA20B9E4560078C5AB /* AdminProjectCollectionViewController.swift in Sources */,
+				99C07AAC20BAA5CD0078C5AB /* SettingsTableViewController.swift in Sources */,
+				9949FD9420C1B02900677B0E /* TaskTableViewCell.swift in Sources */,
+				9949FD8020C19E9C00677B0E /* UsersTableViewController.swift in Sources */,
+				9949FD9A20C2883800677B0E /* FilesCollectionViewController.swift in Sources */,
+				9949FDA020C353F900677B0E /* ListItemTableViewCell.swift in Sources */,
+				9949FD7320BEB45800677B0E /* ProjectViewController.swift in Sources */,
+				9949FD9620C1B1AB00677B0E /* ListTableViewCell.swift in Sources */,
+				9945CA4A20C4BC5C003577CB /* NewsTableViewCell.swift in Sources */,
+				9945CA4C20C4BC9E003577CB /* NewsTableViewController.swift in Sources */,
+				9949FD7720C0309800677B0E /* PublicViewController.swift in Sources */,
+				9949FD7120BE82F300677B0E /* CalendarViewController.swift in Sources */,
+				99FFC95220BAFD4F00ADC288 /* AddViewController.swift in Sources */,
+				9949FD7920C03F8000677B0E /* PublicCellCollectionViewCell.swift in Sources */,
+				9949FD8C20C1A1B000677B0E /* User.swift in Sources */,
 				995BA06420AF060C005A3104 /* ViewController.swift in Sources */,
 				995BA06220AF060C005A3104 /* AppDelegate.swift in Sources */,
+				997169B920AF36F000359A72 /* ProjectsTableViewController.swift in Sources */,
+				9949FD8220C19F7600677B0E /* TasksTableViewController.swift in Sources */,
+				9949FD8820C1A18D00677B0E /* Task.swift in Sources */,
+				997169BB20AF4E5300359A72 /* Projects.swift in Sources */,
+				9949FD9E20C353A100677B0E /* ListItem.swift in Sources */,
+				9996139320BCA405009C43B8 /* CalendarCell.swift in Sources */,
+				9949FD9020C1A1CB00677B0E /* Folder.swift in Sources */,
 				995BA06A20AF060C005A3104 /* PlanIt.xcdatamodeld in Sources */,
+				9996139120BC5B9D009C43B8 /* DesignableView.swift in Sources */,
+				9949FD7520BF201A00677B0E /* ProjectSearchController.swift in Sources */,
+				9949FD9220C1AB3D00677B0E /* UserTableViewCell.swift in Sources */,
+				9949FD7D20C198FC00677B0E /* CategoryTableViewController.swift in Sources */,
+				9949FD8620C19FEF00677B0E /* FoldersTableViewController.swift in Sources */,
+				99C07A9E20B4EB000078C5AB /* AdminTableViewCell.swift in Sources */,
+				9949FD9820C1B4B800677B0E /* FolderTableViewCell.swift in Sources */,
+				997169C120B096A900359A72 /* HomeViewController.swift in Sources */,
+				9949FDA220C3D5E400677B0E /* InsertRowTableViewCell.swift in Sources */,
+				9949FD8A20C1A19C00677B0E /* List.swift in Sources */,
+				99C07A9C20B33DB80078C5AB /* ProfileViewController.swift in Sources */,
+				9949FD8420C19FDA00677B0E /* ListsTableViewController.swift in Sources */,
+				9949FDA420C3F6EA00677B0E /* GardientView.swift in Sources */,
+				9929A55420C7099D002D35F8 /* CategoryView.swift in Sources */,
+				995BA09720AF252B005A3104 /* MainViewController.swift in Sources */,
+				99C07AA620B9D3020078C5AB /* ProfileTableViewController.swift in Sources */,
+				997169C520B0BC8D00359A72 /* ProjectTableViewCell.swift in Sources */,
+				9949FD7B20C041A000677B0E /* Category.swift in Sources */,
+				9949FD9C20C3535300677B0E /* ListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,10 +818,14 @@
 		};
 		995BA08A20AF060E005A3104 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7B26BFF41BACD47994C6D80 /* Pods-PlanIt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PlanIt/PlanIt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4RP3BDXZ96;
 				INFOPLIST_FILE = PlanIt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -449,10 +839,14 @@
 		};
 		995BA08B20AF060E005A3104 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90976ED7CCD013FD1E84FC7C /* Pods-PlanIt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PlanIt/PlanIt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4RP3BDXZ96;
 				INFOPLIST_FILE = PlanIt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -7,7 +7,25 @@
 		<key>PlanIt.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>6</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>995BA05D20AF060C005A3104</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>995BA07420AF060E005A3104</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>995BA07F20AF060E005A3104</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

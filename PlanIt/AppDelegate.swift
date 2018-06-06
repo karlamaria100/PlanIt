@@ -8,19 +8,42 @@
 
 import UIKit
 import CoreData
+import FBSDKCoreKit
+import FBSDKShareKit
+import FBSDKLoginKit
+import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
+    let userDefaults = UserDefaults.standard
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:  [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        GIDSignIn.sharedInstance().clientID = "716119060999-8hu8k2lea459ma18ppngq60kjp666din.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().delegate = self
         // Override point for customization after application launch.
-        return true
+        return  FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
     }
 
+
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        let google = GIDSignIn.sharedInstance().handle(url,sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                                                 annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+        let fb = FBSDKApplicationDelegate.sharedInstance().application(app,
+                                                                       open: url,
+                                                                       sourceApplication: options[.sourceApplication] as! String,
+                                                                       annotation: options[.annotation])
+        
+        return google || fb
+    }
+    
+
     func applicationWillResignActive(_ application: UIApplication) {
+        FBSDKAppEvents.activateApp()
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
@@ -87,6 +110,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
+              withError error: Error!) {
+        if let error = error {
+            print("\(error.localizedDescription)")
+        } else {
+            // add or get info for user
+            let storyboard = UIStoryboard( name:"Main",bundle:nil);
+            let mainView = storyboard.instantiateViewController(withIdentifier: "MainPage") as! MainViewController;
+            self.window?.rootViewController = mainView
+            self.window?.makeKeyAndVisible()
+           
+            // ...
+        }
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
+              withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
     }
 
 }
