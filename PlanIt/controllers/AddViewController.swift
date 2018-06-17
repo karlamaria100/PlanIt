@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import AFNetworking
 import ImageLoader
 import DateTimePicker
+import Alamofire
 
-class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
     
     @IBAction func dismissPopup(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -26,71 +26,92 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var descriptionText: UITextView!
     @IBOutlet weak var addUserView: UIView!
     
-    @IBOutlet weak var searchUserField: UITextField!
+    @IBOutlet weak var lowerValue: UILabel!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var addProjectView: DesignableView!
     
-    
-    
-    
     var type: String = "";
-    var nameField: UITextField = UITextField();
-    var descriptionField: UITextView = UITextView();
     var startDateField: UITextField = UITextField();
     var finishDateField: UITextField = UITextField();
     var searchedUsers : [User] = [];
+    var users : [User] = [];
     var selectedUser : User = User();
+    var filtering = false;
     var userIndex : IndexPath = IndexPath();
     let userDefaults = UserDefaults.standard;
-    let manager = AFHTTPSessionManager()
+    
+    
+    @IBAction func selectRow(_ sender: Any) {
+        print("selected")
+        
+//        tableView.cellForRow(at: self.userIndex)?.backgroundColor = UIColor.white;
+//        self.userIndex = indexPath;
+//        self.selectedUser = self.searchedUsers[indexPath.row];
+//        tableView.cellForRow(at: indexPath)?.backgroundColor = UIColor.gray;
+    }
+    
+    
     @IBAction func doAdd(_ sender: Any) {
         //if project
         //make add request
         if(self.type == "project"){
-            if(nameField.text != "" && descriptionField.text != ""){
+            if(nameLabel.text != "" && descriptionText.text != "" && startDate.titleLabel?.text != "Start date" && finishDate.titleLabel?.text != "Finish date"){
                 let formatter = DateFormatter()
-                formatter.dateFormat = "dd/MM/YYYY HH:mm"
+//                formatter.timeZone = TimeZone(abbreviation: "GMT+0:00") //Set timezone that you want
+                formatter.locale = NSLocale.current
+                formatter.dateFormat = "dd-MM-yyyy HH:mm"
                 let start = formatter.date(from: (self.startDate.titleLabel?.text)!);
                 let finish = formatter.date(from: (self.finishDate.titleLabel?.text)!);
-                let param :NSDictionary = ["name": nameField.text, "description": descriptionField.text, "user":userDefaults.string(forKey: "id"), "startDate":start!.timeIntervalSince1970, "finishDay":finish!.timeIntervalSince1970];
-                manager.post("http://127.0.0.1:8080/planit/projects/add", parameters: param, success: { (urlSession:URLSessionDataTask!, response:Any) in
-                    let jsonResult = response as! Dictionary<String, AnyObject>
-                    // tell view controller to add project to the table view
-                    self.dismiss(animated: true, completion: nil);
-
-
-
-                },failure: { (urlSession:URLSessionDataTask!, error:Error!) in
-                    print("fail");
-                    let error = error as NSError
-                    print("Failure, error is \(error.userInfo)")
-                })
+                if(finish?.compare(start!) == .orderedAscending){
+                    lowerValue.isHidden = false;
+                    startDate.layer.borderColor = UIColor.red.cgColor
+                    startDate.layer.borderWidth = 1;
+                    finishDate.layer.borderColor = UIColor.red.cgColor
+                    finishDate.layer.borderWidth = 1;
+                    return;
+                }
+                startDate.layer.borderWidth = 0;
+                finishDate.layer.borderWidth = 0;
+                lowerValue.isHidden = true;
+            
+                let param :NSDictionary = ["name": nameLabel.text, "description": descriptionText.text, "user":userDefaults.string(forKey: "id"), "startDate":start!.timeIntervalSince1970, "finishDay":finish!.timeIntervalSince1970];
+//                manager.post("http://127.0.0.1:8080/planit/projects/add", parameters: param, success: { (urlSession:URLSessionDataTask!, response:Any) in
+//                    let jsonResult = response as! Dictionary<String, AnyObject>
+//                    // tell view controller to add project to the table view
+//                    self.dismiss(animated: true, completion: nil);
+//                },failure: { (urlSession:URLSessionDataTask!, error:Error!) in
+//                    print("fail");
+//                    let error = error as NSError
+//                    print("Failure, error is \(error.userInfo)")
+//                })
             }else {
-                if(nameField.text == ""){
-                    nameField.layer.borderColor = UIColor.red.cgColor;
-                    nameField.layer.borderWidth = 1;
+                if(nameLabel.text == ""){
+                    nameLabel.layer.borderColor = UIColor.red.cgColor;
+                    nameLabel.layer.borderWidth = 1.0;
                 }
                 else {
-                    nameField.layer.borderWidth = 0;
+                    nameLabel.layer.borderWidth = 0;
                 }
-                if(descriptionField.text == ""){
-                    descriptionField.layer.borderColor=UIColor.red.cgColor
-                    descriptionField.layer.borderWidth = 1;
+                if(descriptionText.text == ""){
+                    descriptionText.layer.borderColor=UIColor.red.cgColor
+                    descriptionText.layer.borderWidth = 1;
                 }
                 else{
-                    descriptionField.layer.borderWidth = 0;
+                    descriptionText.layer.borderWidth = 0;
                 }
-                if(startDate.titleLabel?.text == "Start Date"){
+                if(startDate.titleLabel?.text == "Start date"){
                     startDate.layer.borderColor = UIColor.red.cgColor
                     startDate.layer.borderWidth = 1;
                 }else{
                     startDate.layer.borderWidth = 0;
                 }
-                if(finishDate.titleLabel?.text == "Finish Date"){
+                if(finishDate.titleLabel?.text == "Finish date"){
                     finishDate.layer.borderColor = UIColor.red.cgColor
                     finishDate.layer.borderWidth = 1;
                 }else{
-                    finishDate.layer.borderWidth = 1;
+                    finishDate.layer.borderWidth = 0;
                 }
+                
             }
         }
         else if(self.type == "user"){
@@ -98,19 +119,16 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         
     }
-    
 
     
     @objc func doSelectDate(_ sender: Any) {
         if(self.startDateField.isFirstResponder){
             let dateFormatter1 = DateFormatter()
             dateFormatter1.dateStyle = .medium
-//            self.startDateField.text = dateFormatter1.string(from: self.dueDatePicker.date)
             self.startDateField.resignFirstResponder()
         }else if(self.finishDateField.isFirstResponder){
             let dateFormatter1 = DateFormatter()
             dateFormatter1.dateStyle = .medium
-//            self.finishDateField.text = dateFormatter1.string(from: self.dueDatePicker.date)
             self.finishDateField.resignFirstResponder()
         }
         
@@ -149,122 +167,79 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager.requestSerializer = AFJSONRequestSerializer();
-        manager.responseSerializer = AFJSONResponseSerializer();
-//        self.nameField.delegate = self;
-        self.searchUserField.delegate = self;
-        self.descriptionField.delegate = self;
-        self.usersTableView.delegate = self;
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
         
-//
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
+       
+
+        
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = .clear
+//        navigationController?.navigationBar.tintColor = UIColor.black;
 
         if(self.type == "project"){
             self.view.addSubview(addProjectView);
             self.addProjectView.translatesAutoresizingMaskIntoConstraints = false
-            var left = NSLayoutConstraint(item: self.addProjectView, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0.6, constant: 0)
-            var right = NSLayoutConstraint(item: self.addProjectView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.9, constant: 0)
+            var left = NSLayoutConstraint(item: self.addProjectView, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 1, constant: 0)
+            var right = NSLayoutConstraint(item: self.addProjectView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 1, constant: 0)
             var top = NSLayoutConstraint(item: self.addProjectView, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0)
             var bottom = NSLayoutConstraint(item: self.addProjectView, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1, constant: 0)
+            
             NSLayoutConstraint.activate([left, right, top, bottom]);
+            self.descriptionText.delegate = self;
             self.titleLabel.text = "Add Project"
-//
-//            self.nameField.translatesAutoresizingMaskIntoConstraints = false
-//            var left = NSLayoutConstraint(item: self.nameField, attribute: .leading, relatedBy: .equal, toItem: self.modalView, attribute: .leading, multiplier: 1, constant: 20)
-//            var right = NSLayoutConstraint(item: self.nameField, attribute: .trailing, relatedBy: .equal, toItem: self.modalView, attribute: .trailing, multiplier: 1, constant: -20)
-//            var top = NSLayoutConstraint(item: self.nameField, attribute: .top, relatedBy: .equal, toItem: self.titleLabel, attribute: .bottom, multiplier: 1, constant: 20)
-//            var bottom = NSLayoutConstraint(item: self.nameField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
-//            NSLayoutConstraint.activate([left, right, top, bottom]);
-//
-//            self.datePickerToolbar.sizeToFit()
-//            self.dueDatePicker.minimumDate = Date();
-//
-//            // Adding Button ToolBar
-//            let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doSelectDate))
-//            let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-//            let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelClick))
-//            self.datePickerToolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-//            self.datePickerToolbar.isUserInteractionEnabled = true
-//
-//            self.startDateField.layer.cornerRadius = 5;
-//            self.startDateField.textAlignment = .center;
-//            self.startDateField.inputView = self.dueDatePicker;
-//            self.startDateField.inputAccessoryView = self.datePickerToolbar;
-//            self.startDateField.placeholder = "Start date"
-//            self.startDateField.backgroundColor = UIColor(red:255, green:255,blue:255,alpha:0.14);
-//            self.modalView.addSubview(self.startDateField);
-//
-//            self.startDateField.translatesAutoresizingMaskIntoConstraints = false;
-//            left = NSLayoutConstraint(item: self.startDateField, attribute: .leading, relatedBy: .equal, toItem: self.modalView, attribute: .leading, multiplier: 1, constant: 20)
-//            right = NSLayoutConstraint(item: self.startDateField, attribute: .trailing, relatedBy: .equal, toItem: self.modalView, attribute: .trailing, multiplier: 0.5, constant: -10)
-//            top = NSLayoutConstraint(item: self.startDateField, attribute: .top, relatedBy: .equal, toItem: self.nameField, attribute: .bottom, multiplier: 1, constant: 20)
-//            bottom = NSLayoutConstraint(item: self.startDateField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
-//            NSLayoutConstraint.activate([left, right, top, bottom]);
-//
-//            self.finishDateField.layer.cornerRadius = 5;
-//            self.finishDateField.textAlignment = .center;
-//            self.finishDateField.inputView = self.dueDatePicker;
-//            self.finishDateField.inputAccessoryView = self.datePickerToolbar
-//            self.finishDateField.placeholder = "Finish date"
-//            self.finishDateField.backgroundColor = UIColor(red:255, green:255,blue:255,alpha:0.14);
-//            self.modalView.addSubview(self.finishDateField);
-//
-//            self.finishDateField.translatesAutoresizingMaskIntoConstraints = false;
-//            left = NSLayoutConstraint(item: self.finishDateField, attribute: .leading, relatedBy: .equal, toItem: self.startDateField, attribute: .trailing, multiplier: 1, constant: 20)
-//            right = NSLayoutConstraint(item: self.finishDateField, attribute: .trailing, relatedBy: .equal, toItem: self.modalView, attribute: .trailing, multiplier: 1, constant: -20)
-//            top = NSLayoutConstraint(item: self.finishDateField, attribute: .top, relatedBy: .equal, toItem: self.nameField, attribute: .bottom, multiplier: 1, constant: 20)
-//            bottom = NSLayoutConstraint(item: self.finishDateField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
-//            NSLayoutConstraint.activate([left, right, top, bottom]);
-//
-//            self.descriptionField.autocapitalizationType = .sentences
-//            self.descriptionField.layer.cornerRadius = 5;
-//            self.descriptionField.backgroundColor = UIColor(red:255, green:255,blue:255,alpha:0.14);
-//            self.modalView.addSubview(self.descriptionField);
-//            self.descriptionField.translatesAutoresizingMaskIntoConstraints = false;
-//            let topTable = NSLayoutConstraint(item: self.descriptionField, attribute: .top, relatedBy: .equal, toItem: self.startDateField, attribute: .bottom, multiplier: 1, constant: 20)
-//            let bottomTable = NSLayoutConstraint(item: self.descriptionField, attribute: .bottom, relatedBy: .equal, toItem: self.addButton, attribute: .top, multiplier: 1, constant: -20)
-//            let leftTable = NSLayoutConstraint(item: self.descriptionField, attribute: .leading, relatedBy: .equal, toItem: self.modalView, attribute: .leading, multiplier: 1, constant: 20)
-//            let rightTable = NSLayoutConstraint(item: self.descriptionField, attribute: .trailing, relatedBy: .equal, toItem: self.modalView, attribute: .trailing, multiplier: 1, constant: -20)
-//            NSLayoutConstraint.activate([leftTable, rightTable, bottomTable, topTable]);
 
         }else if(self.type == "user"){
             
             self.view.addSubview(addUserView);
             self.addUserView.translatesAutoresizingMaskIntoConstraints = false
-            var left = NSLayoutConstraint(item: self.addUserView, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0.6, constant: 0)
-            var right = NSLayoutConstraint(item: self.addUserView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.9, constant: 0)
+            var left = NSLayoutConstraint(item: self.addUserView, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 1, constant: 0)
+            var right = NSLayoutConstraint(item: self.addUserView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 1, constant: 0)
             var top = NSLayoutConstraint(item: self.addUserView, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0)
             var bottom = NSLayoutConstraint(item: self.addUserView, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1, constant: 0)
             NSLayoutConstraint.activate([left, right, top, bottom]);
+            
+            Alamofire.request("http://127.0.0.1:8080/planit/users/selectAll", method: .get, encoding: JSONEncoding.default, headers: ["Content-Type" :"application/json"]).responseJSON { response in
+                
+                switch response.result {
+                case .success (let json):
+                    let jsonResult = json as! Dictionary<String, AnyObject>
+                    let json = jsonResult["users"] as! NSArray;
+                    var usr = [User]();
+                    
+                    for userData in json {
+                        let user = self.parseJsonWithData(categoryData: userData);
+                        usr.append(user)
+                    }
+                    SharedService.shared().internetOn = true;
+                    break
+                case .failure(let error):
+                    SharedService.shared().internetOn = false;
+                    print(error)
+                }
+            }
+            self.usersTableView.delegate = self;
+            self.usersTableView.allowsSelection = true;
+            self.searchBar.delegate = self;
             self.titleLabel.text = "Add User";
             
-            
-//            self.nameField.autocapitalizationType = .sentences
-//            self.nameField.borderStyle = UITextBorderStyle.roundedRect
-//            self.nameField.placeholder = "Search user by email or name";
-//            self.nameField.backgroundColor = UIColor(red:255, green:255,blue:255,alpha:0.14);
-//            self.view.addSubview(self.nameField);
-//
-//            self.nameField.translatesAutoresizingMaskIntoConstraints = false
-//            let left = NSLayoutConstraint(item: self.nameField, attribute: .leading, relatedBy: .equal, toItem: self.modalView, attribute: .leading, multiplier: 1, constant: 20)
-//            let right = NSLayoutConstraint(item: self.nameField, attribute: .trailing, relatedBy: .equal, toItem: self.modalView, attribute: .trailing, multiplier: 1, constant: -20)
-//            let top = NSLayoutConstraint(item: self.nameField, attribute: .top, relatedBy: .equal, toItem: self.titleLabel, attribute: .bottom, multiplier: 1, constant: 20)
-//            let bottom = NSLayoutConstraint(item: self.nameField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
-//            NSLayoutConstraint.activate([left, right, top, bottom]);
-//
-//            self.usersTableView.layer.cornerRadius = 5;
-//
-//            self.usersTableView.backgroundColor = UIColor(red:255, green:255,blue:255,alpha:0.14)
-//            self.modalView.addSubview(self.usersTableView);
-//
-//            self.usersTableView.translatesAutoresizingMaskIntoConstraints = false;
-//            let topTable = NSLayoutConstraint(item: self.usersTableView, attribute: .top, relatedBy: .equal, toItem: self.nameField, attribute: .bottom, multiplier: 1, constant: 20)
-//            let bottomTable = NSLayoutConstraint(item: self.usersTableView, attribute: .bottom, relatedBy: .equal, toItem: self.addButton, attribute: .top, multiplier: 1, constant: -20)
-//            let leftTable = NSLayoutConstraint(item: self.usersTableView, attribute: .leading, relatedBy: .equal, toItem: self.modalView, attribute: .leading, multiplier: 1, constant: 20)
-//            let rightTable = NSLayoutConstraint(item: self.usersTableView, attribute: .trailing, relatedBy: .equal, toItem: self.modalView, attribute: .trailing, multiplier: 1, constant: -20)
-//            NSLayoutConstraint.activate([leftTable, rightTable, bottomTable, topTable]);
+
         }
         // Do any additional setup after loading the view.
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == nil || searchBar.text == "" {
+            filtering = false
+            searchedUsers = [];
+            view.endEditing(true);
+            usersTableView.reloadData();
+        }else {
+            filtering = true;
+            searchedUsers = users.filter({( user : User) -> Bool in
+                return user.name.lowercased().contains(searchText.lowercased()) || user.email.lowercased().contains(searchText.lowercased())
+            })
+            usersTableView.reloadData()
+        }
     }
     
      func numberOfSections(in tableView: UITableView) -> Int {
@@ -286,8 +261,9 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         picker.includeMonth = true;
         picker.completionHandler = { date in
             let formatter = DateFormatter()
-            formatter.dateFormat = "dd/MM/YYYY HH:mm"
-            self.finishDate.titleLabel?.text = formatter.string(from: date);
+            formatter.dateFormat = "dd-MM-yyyy HH:mm"
+            self.finishDate.setTitle(formatter.string(from: date), for: .normal);
+            
         }
         
     }
@@ -300,9 +276,16 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         picker.includeMonth = true;
         picker.completionHandler = { date in
             let formatter = DateFormatter()
-            formatter.dateFormat = "dd/MM/YYYY HH:mm"
+            formatter.dateFormat = "dd-MM-yyyy HH:mm"
             self.startDate.setTitle(formatter.string(from: date), for: .normal);
         }
+        
+    }
+    
+    override func willMove(toParentViewController parent: UIViewController?) {
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 94/255.0, green: 162/255.0, blue: 175/255.0, alpha: 1.0)
+        navigationController?.navigationBar.isTranslucent = false
+        
         
     }
     
@@ -321,22 +304,24 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         return cell
     }
     
-    
+//    func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
+//        print("macar aiici")
+//    }
+//
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected")
         tableView.cellForRow(at: self.userIndex)?.backgroundColor = UIColor.white;
         self.userIndex = indexPath;
         self.selectedUser = self.searchedUsers[indexPath.row];
         tableView.cellForRow(at: indexPath)?.backgroundColor = UIColor.gray;
     }
-    
-    
-
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+
     
     @objc func endEditing() {
         view.endEditing(true)
@@ -353,39 +338,19 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 
 }
 
-extension AddViewController: UITextFieldDelegate, UITextViewDelegate {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if(textField == self.searchUserField){
-            let id = userDefaults.string(forKey: "id")
-            manager.get("http://127.0.0.1:8080/planit/users/searchToAddToProject?string="+self.searchUserField.text!+"&id="+id!, parameters: nil, success: { (urlSession:URLSessionDataTask!, response:Any) in
-                let jsonResult = response as! Dictionary<String, AnyObject>
-                if(jsonResult["users"] != nil){
-                    let json = jsonResult["users"] as! NSArray;
-                    var usr = [User]();
-                
-                    for userData in json {
-                        let user = self.parseJsonWithData(categoryData: userData);
-                        usr.append(user)
-                    }
-                    self.searchedUsers = usr;
-                }else{
-                    self.searchedUsers = [];
-                }
 
-                self.usersTableView.reloadData();
-                // tell view controller to add project to the table view
-                
-            },failure: { (urlSession:URLSessionDataTask!, error:Error!) in
-                print("fail");
-                let error = error as NSError
-                print("Failure, error is \(error.userInfo)")
-            })
-        }
-        endEditing()
-        return true
-    }
+
+extension AddViewController: UITextViewDelegate {
+
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        if(textField == self.searchUserField){
+//            let id = userDefaults.string(forKey: "id")
+//
+//        }
+//        endEditing()
+//        return true
+//    }
+
     
-    
-    
+
 }

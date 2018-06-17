@@ -12,6 +12,8 @@ import FBSDKCoreKit
 import FBSDKShareKit
 import FBSDKLoginKit
 import GoogleSignIn
+import IQKeyboardManagerSwift
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -23,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:  [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         GIDSignIn.sharedInstance().clientID = "716119060999-8hu8k2lea459ma18ppngq60kjp666din.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
+        IQKeyboardManager.shared.enable = true
         // Override point for customization after application launch.
         return  FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
@@ -118,12 +121,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             print("\(error.localizedDescription)")
         } else {
             // add or get info for user
-            let storyboard = UIStoryboard( name:"Main",bundle:nil);
-            let mainView = storyboard.instantiateViewController(withIdentifier: "MainPage") as! MainViewController;
-            self.window?.rootViewController = mainView
-            self.window?.makeKeyAndVisible()
+            
+            SharedService.shared().googleUser.email = user.profile.email;
+            SharedService.shared().googleUser.name = user.profile.name;
+            SharedService.shared().googleUser.profilePicture = "";
+            if user.profile.hasImage{
+                SharedService.shared().googleUser.profilePicture = user.profile.imageURL(withDimension: 200).absoluteString
+            }
+            
+        
+            let parameters : Dictionary<String, AnyObject> = ["email":user?.profile.email as AnyObject, "googleId": user.userID as AnyObject, "name": "" as AnyObject, "surname": user.profile.givenName as AnyObject, "profilePicture" :  SharedService.shared().googleUser.profilePicture as AnyObject] ;
+            print(parameters)
+            UserNetworkManager.shared().addUser(parameters: parameters)
            
-            // ...
         }
     }
     

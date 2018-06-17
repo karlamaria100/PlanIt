@@ -22,6 +22,8 @@ class Projects:NSObject,  NSCoding{
     
     var finishDate: String;
     
+    var address: String;
+    
     override init() {
         self.name = "";
         self.id = 0;
@@ -29,6 +31,7 @@ class Projects:NSObject,  NSCoding{
         self.admin = false;
         self.startDate = "";
         self.finishDate = "";
+        self.address = "";
     }
     
     
@@ -40,6 +43,7 @@ class Projects:NSObject,  NSCoding{
         self.admin = Bool(aDecoder.decodeObject(forKey: "admin") as! String)!;
         self.startDate = aDecoder.decodeObject(forKey: "startDate") as! String;
         self.finishDate = aDecoder.decodeObject(forKey: "finishDate") as! String;
+        self.address = aDecoder.decodeObject(forKey: "address") as! String;
     }
     
     func encode(with aCoder: NSCoder)
@@ -50,6 +54,7 @@ class Projects:NSObject,  NSCoding{
         aCoder.encode(self.finishDate, forKey: "finishDate")
         aCoder.encode(self.desc, forKey: "desc")
         aCoder.encode(self.admin.description, forKey: "admin")
+        aCoder.encode(self.address, forKey: "address");
     }
 
 }

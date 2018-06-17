@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Folder: NSObject {
+class Folder: NSObject, NSCoding {
     
 
     var id: Int32;

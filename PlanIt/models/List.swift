@@ -8,7 +8,7 @@
 
 import UIKit
 
-class List: NSObject {
+class List: NSObject, NSCoding {
     
     var id: Int32;
     

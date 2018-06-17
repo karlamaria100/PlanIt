@@ -30,8 +30,6 @@ class CalendarViewController: UIViewController {
         navigationController?.navigationBar.addSubview(monthLabel);
         navigationController?.navigationBar.addSubview(yearLabel);
         
-//        navigationController?.navigationBar.clipsToBounds = true;
-        
         calendarCell.scrollToDate(Date(), animateScroll: false)
         setUpCalendar();
         
@@ -46,7 +44,7 @@ class CalendarViewController: UIViewController {
         for (project) in projects{
             var startTimestamp = Date(timeIntervalSince1970: TimeInterval(project.startDate)!);
             let finishTimestamp = Date(timeIntervalSince1970: TimeInterval(project.finishDate)!);
-            while( startTimestamp < finishTimestamp){
+            while( startTimestamp <= finishTimestamp){
                 projectDates[ changeDateToString(date: startTimestamp)] = project;
                 startTimestamp = startTimestamp + 100000;
             }

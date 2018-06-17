@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AFNetworking
+import Alamofire
 
 class ListTableViewController: UITableViewController {
 
@@ -15,50 +15,58 @@ class ListTableViewController: UITableViewController {
     
     var list: List = List();
     var listItems: [ListItem] = [];
-    let manager = AFHTTPSessionManager()
     let userDefaults = UserDefaults.standard;
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = list.name;
-        manager.requestSerializer = AFJSONRequestSerializer();
-        manager.responseSerializer = AFJSONResponseSerializer();
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+         self.clearsSelectionOnViewWillAppear = true
         self.getListItems();
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-//         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     func getListItems() -> Void {
-        manager.get("http://127.0.0.1:8080/planit/listItems/getAllItemsForList?id=" + String(self.list.id), parameters: nil, success: { (urlSession:URLSessionDataTask!, response:Any) in
-            let jsonResult = response as! Dictionary<String, AnyObject>;
+        
+        Alamofire.request("http://127.0.0.1:8080/planit/listItems/getAllItemsForList?id=" + String(self.list.id)).responseJSON { response in
+            print("Request: \(String(describing: response.request))")   // original url request
+            print("Response: \(String(describing: response.response))") // http url response
+            print("Result: \(response.result)")                         // response serialization result
             
-            if(jsonResult["items"] != nil){
-                let json = jsonResult["items"] as! NSArray;
-                
-                var lst = [ListItem]();
-                
-                for listData in json {
-                    let list = self.parseJsonWithData(categoryData: listData);
-                    lst.append(list)
-                }
-                self.listItems = lst;
-            }
-            else{
-                self.listItems = [];
-            }
             
-            //            let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.projects)
-            //            self.userDefaults.set(encodedData, forKey: "projects")
-            self.listTableView.reloadData()
             
-        },failure: { (urlSession:URLSessionDataTask!, error:Error!) in
-            print("fail");
-            let error = error as NSError
-            print("Failure, error is \(error.userInfo)")
-            self.listTableView.reloadData();
-        })
+//            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+//                print("Data: \(utf8Text)") // original server data as UTF8 string
+//            }
+        }
+        
+//        manager.get("http://127.0.0.1:8080/planit/listItems/getAllItemsForList?id=" + String(self.list.id), parameters: nil, success: { (urlSession:URLSessionDataTask!, response:Any) in
+//            let jsonResult = response as! Dictionary<String, AnyObject>;
+//
+//            if(jsonResult["items"] != nil){
+//                let json = jsonResult["items"] as! NSArray;
+//
+//                var lst = [ListItem]();
+//
+//                for listData in json {
+//                    let list = self.parseJsonWithData(categoryData: listData);
+//                    lst.append(list)
+//                }
+//                self.listItems = lst;
+//            }
+//            else{
+//                self.listItems = [];
+//            }
+//
+//            //            let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.projects)
+//            //            self.userDefaults.set(encodedData, forKey: "projects")
+//            self.listTableView.reloadData()
+//
+//        },failure: { (urlSession:URLSessionDataTask!, error:Error!) in
+//            print("fail");
+//            let error = error as NSError
+//            print("Failure, error is \(error.userInfo)")
+//            self.listTableView.reloadData();
+//        })
     }
     
     func parseJsonWithData(categoryData: Any) -> ListItem{

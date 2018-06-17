@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AFNetworking
+
 
 class ProjectsTableViewController: UITableViewController {
 
@@ -21,7 +21,6 @@ class ProjectsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let manager = AFHTTPSessionManager()
         let decoded  = self.userDefault.object(forKey: "projects") as! Data
         self.projects = (NSKeyedUnarchiver.unarchiveObject(with: decoded) as! NSArray)
 //        manager.post("http://l127.0.0.1:8080/planit/projects/userProjects", parameters: param, success: { (urlSession, response) in

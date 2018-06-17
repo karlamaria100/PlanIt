@@ -1,25 +1,5 @@
 PODS:
-  - AFNetworking (2.6.3):
-    - AFNetworking/NSURLConnection (= 2.6.3)
-    - AFNetworking/NSURLSession (= 2.6.3)
-    - AFNetworking/Reachability (= 2.6.3)
-    - AFNetworking/Security (= 2.6.3)
-    - AFNetworking/Serialization (= 2.6.3)
-    - AFNetworking/UIKit (= 2.6.3)
-  - AFNetworking/NSURLConnection (2.6.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.3)
-  - AFNetworking/Security (2.6.3)
-  - AFNetworking/Serialization (2.6.3)
-  - AFNetworking/UIKit (2.6.3):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
+  - Alamofire (4.7.2)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -59,10 +39,11 @@ PODS:
   - GTMSessionFetcher/Full (1.1.15):
     - GTMSessionFetcher/Core (= 1.1.15)
   - ImageLoader (0.14.0)
+  - IQKeyboardManagerSwift (6.0.3)
   - JTAppleCalendar (7.1.5)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.5)
+  - Alamofire (~> 4.7)
   - DateTimePicker
   - FBSDKCoreKit (~> 4.10.0)
   - FBSDKLoginKit (~> 4.10.0)
@@ -70,11 +51,12 @@ DEPENDENCIES:
   - GoogleAPIClientForREST/Drive (~> 1.2.1)
   - GoogleSignIn (~> 4.1.1)
   - ImageLoader
+  - IQKeyboardManagerSwift
   - JTAppleCalendar (~> 7.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - AFNetworking
+    - Alamofire
     - Bolts
     - DateTimePicker
     - FBSDKCoreKit
@@ -86,10 +68,11 @@ SPEC REPOS:
     - GTMOAuth2
     - GTMSessionFetcher
     - ImageLoader
+    - IQKeyboardManagerSwift
     - JTAppleCalendar
 
 SPEC CHECKSUMS:
-  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   DateTimePicker: c7b10f7dfe6eb06014c88df964a0a994f246b791
   FBSDKCoreKit: d2aaed5e9ab7d8d6301c533376a1fbff1cf3deb5
@@ -101,8 +84,9 @@ SPEC CHECKSUMS:
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   ImageLoader: 56f57e35d6ed26a74183dc2e472133b4b22eb7b9
+  IQKeyboardManagerSwift: 04e8679f85e496bb2c474eeb9284052f1b3c391c
   JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
 
-PODFILE CHECKSUM: 54b6b356cc2560481f42aaca77cb5a5e3418471a
+PODFILE CHECKSUM: eb2f6f5e2597a1d6e7992e21c7cf0750fca46074
 
 COCOAPODS: 1.5.2

@@ -12,14 +12,16 @@ import FBSDKCoreKit
 import FBSDKShareKit
 import FBSDKLoginKit
 import AVFoundation
-import AFNetworking
 import GoogleSignIn
+import Alamofire
 
 class ViewController: UIViewController, GIDSignInUIDelegate {
 
     @IBOutlet weak var loginButton: UIButton!
     let userDefaults = UserDefaults.standard
     
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     
     @IBAction func doForgotPassword(_ sender: Any) {
     }
@@ -28,26 +30,15 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
         
     }
     @IBAction func doLogin(_ sender: Any) {
+        if((passwordField.text?.count)! < 6){
+            passwordField.layer.borderColor = UIColor.red.cgColor;
+            passwordField.layer.borderWidth = 1;
+        }
         
-//        let manager = AFHTTPSessionManager()
-//        manager.requestSerializer = AFJSONRequestSerializer();
-//        manager.responseSerializer = AFJSONResponseSerializer();
-//        let param :NSDictionary = ["email": email, "facebookId": id, "name": name,"surname":surname, "profileImage":picture];
-//        manager.post("http://127.0.0.1:8080/planit/users/add", parameters:param , success: { (urlSession, response)  in
-//            let jsonResult = response as! Dictionary<String, AnyObject>
-//            // do whatever with jsonResult
-//            let userInfo = jsonResult["user"] as! Dictionary<String, AnyObject>;
-//            self.userDefaults.set(userInfo["id"], forKey: "id")
-//            //                    let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: jsonResult["projects"] as Any)
-//            //                    self.userDefaults.set(encodedData, forKey: "projects")
-//            //                    self.userDefaults.synchronize()
-//            //                    print("is logged in")
-//            
-//        },failure: { (urlSession:URLSessionDataTask!, error) in
-//            let error = error as NSError
-//            print("Failure, error is \(error.userInfo)")
-//            //check if error is from not having internet or back failure and print message
-//        })
+        let param: Dictionary<String, AnyObject> = ["email": emailField.text as AnyObject, "password": passwordField.text as AnyObject ];
+//        UserNetworkManager.shared().loginUser()
+        
+
 
         //check if info respect type
     }
@@ -57,10 +48,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
     @IBAction func doDriveLogin(_ sender: Any) {
         GIDSignIn.sharedInstance().signIn();
         print("After Login")
-//        let appDelegate = UIApplication.shared.delegate! as! AppDelegate
-//        let mainView = self.storyboard?.instantiateViewController(withIdentifier: "MainPage") as! MainViewController;
-//        appDelegate.window?.rootViewController = mainView
-//        appDelegate.window?.makeKeyAndVisible()
     }
     
     
@@ -70,8 +57,10 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
         fbLoginManager.logIn(withReadPermissions: ["public_profile","email"], from: self) { (result, error) -> Void in
             if (error == nil){
                 let fbLoginResult : FBSDKLoginManagerLoginResult = result!
-                print(fbLoginResult.grantedPermissions)
-                self.getFacebookData();
+                if( fbLoginResult.grantedPermissions != nil){
+                    print(fbLoginResult.grantedPermissions)
+                    self.getFacebookData();
+                }
             }
         }
         
@@ -96,8 +85,17 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
             }
         }
   
-        
-        // Do any additional setup after loading the view, typically from a nib.
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+         self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,23 +103,22 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
+    func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     func getFacebookData() {
             //show loader
-        if(self.userDefaults.string(forKey: "id") != nil){
-            let appDelegate = UIApplication.shared.delegate! as! AppDelegate
-            let mainView = self.storyboard?.instantiateViewController(withIdentifier: "MainPage") as! MainViewController;
-            appDelegate.window?.rootViewController = mainView
-            appDelegate.window?.makeKeyAndVisible();
-        }
-            // either add him by fbaccess token or make a request to get his db info
         let req = FBSDKGraphRequest(graphPath: "/me", parameters: ["fields":"email, name, picture, id, last_name, first_name"], tokenString: FBSDKAccessToken.current().tokenString, version: nil, httpMethod: "GET")
         
         req!.start {(connection: FBSDKGraphRequestConnection?, result: Any?, error: Error?) in
             if(error == nil)
             {
                 let userData = result as? [String:AnyObject]
-                    
-                    // Access user data
         
                 let name = userData!["first_name"] as? String
                 let surname = userData!["last_name"] as? String
@@ -135,35 +132,24 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
                 self.userDefaults.set(id, forKey: "facebookId");
                 self.userDefaults.set(picture, forKey: "profilePicture")
                 
-                let manager = AFHTTPSessionManager()
-                manager.requestSerializer = AFJSONRequestSerializer();
-                manager.responseSerializer = AFJSONResponseSerializer();
-                let param :NSDictionary = ["email": email as Any, "facebookId": id, "name": name,"surname":surname, "profileImage":picture];
-                manager.post("http://127.0.0.1:8080/planit/users/add", parameters:param , success: { (urlSession, response)  in
-                    let jsonResult = response as! Dictionary<String, AnyObject>
-                    // do whatever with jsonResult
-                    let userInfo = jsonResult["user"] as! Dictionary<String, AnyObject>;
-                    if(self.userDefaults.string(forKey: "id") == nil){
-                        self.userDefaults.set(userInfo["id"], forKey: "id")
-                        let appDelegate = UIApplication.shared.delegate! as! AppDelegate
-                        let mainView = self.storyboard?.instantiateViewController(withIdentifier: "MainPage") as! MainViewController;
-                        appDelegate.window?.rootViewController = mainView
-                        appDelegate.window?.makeKeyAndVisible();
-                    }
-                },failure: { (urlSession:URLSessionDataTask!, error) in
-                    let error = error as NSError
-                    print("Failure, error is \(error.userInfo)")
                 
-                    //check if error is from not having internet or back failure and print message
-                })
+                let param :Dictionary<String, AnyObject> = ["email": email as AnyObject, "facebookId": id as AnyObject, "name": name as AnyObject,"surname":surname as AnyObject, "profileImage":picture as AnyObject];
+                //loader on
+                UserNetworkManager.shared().addUser(parameters: param);
+                
             }
             else
             {
-                // show error modal
+                if(self.userDefaults.string(forKey: "id") != nil){
+                    let appDelegate = UIApplication.shared.delegate! as! AppDelegate
+                    let mainView = self.storyboard?.instantiateViewController(withIdentifier: "MainPage") as! MainViewController;
+                    appDelegate.window?.rootViewController = mainView
+                    appDelegate.window?.makeKeyAndVisible();
+                }
             }
         };
-        // User is logged in, do work such as go to next view controller.
     }
+
 
 
 

@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import AFNetworking
+import Alamofire
 
 class PublicViewController: UIViewController{
     
-    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var finishDateLabel: UILabel!
 
@@ -27,14 +26,13 @@ class PublicViewController: UIViewController{
     
     var categories: [Category] = [];
     var project: Projects = Projects();
-    let manager = AFHTTPSessionManager()
     let userDefaults = UserDefaults.standard;
     
     
     @IBAction func goToUsers(_ sender: Any) {
         let categoryView = storyboard?.instantiateViewController(withIdentifier: "UsersView") as! UsersTableViewController;
         categoryView.project = project;
-        navigationController?.navigationBar.title = ""
+        navigationController?.navigationItem.title = ""
         navigationController?.pushViewController(categoryView, animated: false);
     }
     
@@ -57,7 +55,17 @@ class PublicViewController: UIViewController{
         
     }
   
-
+    
+    @IBAction func goToMaps(_ sender: Any) {
+        
+        if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
+            UIApplication.shared.openURL(URL(string:
+                "comgooglemaps://?q="+self.project.address+"&center=40.765819,-73.975866&zoom=14&views=traffic")!)
+        } else {
+            print("Can't use comgooglemaps://");
+        }
+    }
+    
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -75,24 +83,13 @@ class PublicViewController: UIViewController{
         return cell;
         
     }
-
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.tintColor = UIColor.black;
-        navigationController?.navigationBar.barTintColor = UIColor(red: 94/255.0, green: 162/255.0, blue: 175/255.0, alpha: 1.0);
-//        navigationController?.navigationBar.clipsToBounds = true;
-//        navigationController?.navigationBar.backgroundColor = UIColor(red: 94/255.0, green: 162/255.0, blue: 175/255.0, alpha: 1.0);
-        
-          self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(goToUsers(_:))),UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToUsers(_:))), ]
-//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action:nil);
-        
-        //make caregories request for project
-        navigationItem.title = project.name;
-//        self.descriptionLabel.text = self.project.desc;
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(enableEdit)),UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addUser))]
+
         let startDate = Date(timeIntervalSince1970: TimeInterval(project.startDate)!);
         let finishDate = Date(timeIntervalSince1970: TimeInterval(project.finishDate)!);
         let dateFormatter = DateFormatter()
@@ -107,43 +104,51 @@ class PublicViewController: UIViewController{
         // Do any additional setup after loading the view.
     }
     
+    @objc func enableEdit(){
+        print("edit button");
+        
+    }
+    
+    @objc func addUser(){
+        navigationController?.performSegue(withIdentifier: "AddUserSegue", sender: self);
+    }
+    
     func getCategories() -> Void {
-        manager.requestSerializer = AFJSONRequestSerializer();
-        manager.responseSerializer = AFJSONResponseSerializer();
         
         if(userDefaults.object(forKey: "categories") != nil){
             let decoded  = userDefaults.object(forKey: "categories") as! Data
             self.categories = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Category]
         }
-
-        
-        manager.get("http://127.0.0.1:8080/planit/projects/getCategories?id=" + String(self.project.id), parameters: nil, success: { (urlSession:URLSessionDataTask!, response:Any) in
-            let jsonResult = response as! Dictionary<String, AnyObject>;
+        Alamofire.request("http://127.0.0.1:8080/planit/projects/getCategories?id=" + String(self.project.id), method: .get, encoding: JSONEncoding.default, headers: ["Content-Type" :"application/json"]).responseJSON { response in
             
-            let json = jsonResult["categories"] as! NSArray;
-            
-            var cat = [Category]();
-            
-            for categoryData in json {
-                let category = self.parseJsonToCategory(categoryData: categoryData);
-                cat.append(category)
+            switch response.result {
+            case .success (let json):
+                
+                let jsonResult = json as! Dictionary<String, AnyObject>;
+                
+                let json = jsonResult["categories"] as! NSArray;
+                
+                var cat = [Category]();
+                
+                for categoryData in json {
+                    let category = self.parseJsonToCategory(categoryData: categoryData);
+                    cat.append(category)
+                }
+                self.categories = cat;
+                
+                let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.categories)
+                self.userDefaults.set(encodedData, forKey: "categories")
+                
+                self.printCategories();
+                
+                SharedService.shared().internetOn = true;
+                break
+            case .failure(let error):
+                SharedService.shared().internetOn = false;
+                print(error)
             }
-            self.categories = cat;
-            
-            let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.categories)
-            self.userDefaults.set(encodedData, forKey: "categories")
-            
-            self.printCategories();
-            
-        },failure: { (urlSession:URLSessionDataTask!, error:Error!) in
-            print("fail");
-            let error = error as NSError
-            print("Failure, error is \(error.userInfo)")
-           
-            self.printCategories();
-        })
+        }
         
-       
     }
     
     func printCategories() -> Void {
@@ -180,6 +185,7 @@ class PublicViewController: UIViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
 
     /*

@@ -10,7 +10,8 @@ import UIKit
 
 class FolderTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var nameLabel: UILabel!
+
+    @IBOutlet weak var nameField: UITextField!
     
     
     override func awakeFromNib() {

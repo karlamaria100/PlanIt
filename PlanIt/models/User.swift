@@ -18,12 +18,15 @@ class User: NSObject {
     
     var profilePicture: String;
     
+    var phone: String;
+    
     
     override init() {
         self.name = "";
         self.id = 0;
         self.email = "";
         self.profilePicture = "";
+        self.phone = "";
     }
     
     
@@ -33,6 +36,7 @@ class User: NSObject {
         self.id = Int32(aDecoder.decodeObject(forKey: "id") as! String)!
         self.email = aDecoder.decodeObject(forKey: "email") as! String;
         self.profilePicture = aDecoder.decodeObject(forKey: "profilePicture") as! String;
+        self.phone = aDecoder.decodeObject(forKey: "phone") as! String
     }
     
     func encode(with aCoder: NSCoder)
@@ -41,6 +45,7 @@ class User: NSObject {
         aCoder.encode(String(self.id), forKey: "id")
         aCoder.encode(self.email, forKey: "email")
         aCoder.encode(self.profilePicture, forKey: "profilePicture")
+        aCoder.encode(self.phone, forKey: "phone")
     }
 
 

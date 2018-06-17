@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9929A55420C7099D002D35F8 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9929A55320C7099D002D35F8 /* CategoryView.swift */; };
 		9929A55620C85168002D35F8 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 9929A55520C85168002D35F8 /* .gitignore */; };
+		9929A55820CA83DD002D35F8 /* ProjectsNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9929A55720CA83DD002D35F8 /* ProjectsNetworkManager.swift */; };
 		9945CA3B20C44E18003577CB /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9945CA3520C44E17003577CB /* OpenSans-Italic.ttf */; };
 		9945CA3C20C44E18003577CB /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9945CA3620C44E17003577CB /* OpenSans-LightItalic.ttf */; };
 		9945CA3D20C44E18003577CB /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9945CA3720C44E17003577CB /* OpenSans-Regular.ttf */; };
@@ -60,6 +61,7 @@
 		997169BB20AF4E5300359A72 /* Projects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997169BA20AF4E5300359A72 /* Projects.swift */; };
 		997169C120B096A900359A72 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997169C020B096A900359A72 /* HomeViewController.swift */; };
 		997169C520B0BC8D00359A72 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997169C420B0BC8D00359A72 /* ProjectTableViewCell.swift */; };
+		9991A11E20CE75EB00AC52AE /* UserNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9991A11D20CE75EB00AC52AE /* UserNetworkManager.swift */; };
 		9996139120BC5B9D009C43B8 /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9996139020BC5B9D009C43B8 /* DesignableView.swift */; };
 		9996139320BCA405009C43B8 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9996139220BCA405009C43B8 /* CalendarCell.swift */; };
 		99C07A9C20B33DB80078C5AB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C07A9B20B33DB80078C5AB /* ProfileViewController.swift */; };
@@ -68,6 +70,7 @@
 		99C07AA620B9D3020078C5AB /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C07AA520B9D3020078C5AB /* ProfileTableViewController.swift */; };
 		99C07AAA20B9E4560078C5AB /* AdminProjectCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C07AA920B9E4560078C5AB /* AdminProjectCollectionViewController.swift */; };
 		99C07AAC20BAA5CD0078C5AB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C07AAB20BAA5CD0078C5AB /* SettingsTableViewController.swift */; };
+		99F5AFD220D2BAC700DF059C /* SharedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F5AFD120D2BAC700DF059C /* SharedService.swift */; };
 		99FFC95220BAFD4F00ADC288 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FFC95120BAFD4F00ADC288 /* AddViewController.swift */; };
 		A06E56C80F49692000A11702 /* Pods_PlanIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79FF8C87D00348ED77DB9C4 /* Pods_PlanIt.framework */; };
 /* End PBXBuildFile section */
@@ -93,6 +96,7 @@
 		90976ED7CCD013FD1E84FC7C /* Pods-PlanIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanIt.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlanIt/Pods-PlanIt.release.xcconfig"; sourceTree = "<group>"; };
 		9929A55320C7099D002D35F8 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		9929A55520C85168002D35F8 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		9929A55720CA83DD002D35F8 /* ProjectsNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsNetworkManager.swift; sourceTree = "<group>"; };
 		9945CA3520C44E17003577CB /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
 		9945CA3620C44E17003577CB /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		9945CA3720C44E17003577CB /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 		997169BA20AF4E5300359A72 /* Projects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projects.swift; sourceTree = "<group>"; };
 		997169C020B096A900359A72 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		997169C420B0BC8D00359A72 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
+		9991A11D20CE75EB00AC52AE /* UserNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkManager.swift; sourceTree = "<group>"; };
 		9996139020BC5B9D009C43B8 /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		9996139220BCA405009C43B8 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		99C07A9B20B33DB80078C5AB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +164,7 @@
 		99C07AA520B9D3020078C5AB /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		99C07AA920B9E4560078C5AB /* AdminProjectCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminProjectCollectionViewController.swift; sourceTree = "<group>"; };
 		99C07AAB20BAA5CD0078C5AB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		99F5AFD120D2BAC700DF059C /* SharedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedService.swift; sourceTree = "<group>"; };
 		99FFC95120BAFD4F00ADC288 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		B79FF8C87D00348ED77DB9C4 /* Pods_PlanIt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanIt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B26BFF41BACD47994C6D80 /* Pods-PlanIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanIt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlanIt/Pods-PlanIt.debug.xcconfig"; sourceTree = "<group>"; };
@@ -279,6 +285,9 @@
 				995BA06120AF060C005A3104 /* AppDelegate.swift */,
 				997169BF20AF4EC100359A72 /* controllers */,
 				997169BE20AF4EA300359A72 /* models */,
+				9929A55720CA83DD002D35F8 /* ProjectsNetworkManager.swift */,
+				9991A11D20CE75EB00AC52AE /* UserNetworkManager.swift */,
+				99F5AFD120D2BAC700DF059C /* SharedService.swift */,
 			);
 			path = PlanIt;
 			sourceTree = "<group>";
@@ -546,7 +555,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PlanIt/Pods-PlanIt-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/DateTimePicker/DateTimePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
@@ -556,12 +565,13 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/ImageLoader/ImageLoader.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateTimePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
@@ -571,6 +581,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageLoader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 			);
@@ -613,9 +624,11 @@
 				9949FD7320BEB45800677B0E /* ProjectViewController.swift in Sources */,
 				9949FD9620C1B1AB00677B0E /* ListTableViewCell.swift in Sources */,
 				9945CA4A20C4BC5C003577CB /* NewsTableViewCell.swift in Sources */,
+				9991A11E20CE75EB00AC52AE /* UserNetworkManager.swift in Sources */,
 				9945CA4C20C4BC9E003577CB /* NewsTableViewController.swift in Sources */,
 				9949FD7720C0309800677B0E /* PublicViewController.swift in Sources */,
 				9949FD7120BE82F300677B0E /* CalendarViewController.swift in Sources */,
+				99F5AFD220D2BAC700DF059C /* SharedService.swift in Sources */,
 				99FFC95220BAFD4F00ADC288 /* AddViewController.swift in Sources */,
 				9949FD7920C03F8000677B0E /* PublicCellCollectionViewCell.swift in Sources */,
 				9949FD8C20C1A1B000677B0E /* User.swift in Sources */,
@@ -644,6 +657,7 @@
 				9949FDA420C3F6EA00677B0E /* GardientView.swift in Sources */,
 				9929A55420C7099D002D35F8 /* CategoryView.swift in Sources */,
 				995BA09720AF252B005A3104 /* MainViewController.swift in Sources */,
+				9929A55820CA83DD002D35F8 /* ProjectsNetworkManager.swift in Sources */,
 				99C07AA620B9D3020078C5AB /* ProfileTableViewController.swift in Sources */,
 				997169C520B0BC8D00359A72 /* ProjectTableViewCell.swift in Sources */,
 				9949FD7B20C041A000677B0E /* Category.swift in Sources */,

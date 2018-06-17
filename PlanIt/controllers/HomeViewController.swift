@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AFNetworking
+import Alamofire
 
 class HomeViewController: UITableViewController {
 
@@ -15,10 +15,10 @@ class HomeViewController: UITableViewController {
     @IBOutlet var projectsTableView: UITableView!
     
     var projects : [Projects] = []
-    let userDefaults = UserDefaults.standard
+    let userDefaults = UserDefaults.standard;
     var searchedProjects: [Projects] = [];
     private let refreshCtrl = UIRefreshControl()
-    let manager = AFHTTPSessionManager()
+    
     let searchController = UISearchController(searchResultsController: nil)
     
     @IBAction func goToProjectPage(_ sender: Any) {
@@ -33,6 +33,7 @@ class HomeViewController: UITableViewController {
         if(admin == true){
             let adminProjectView = storyboard?.instantiateViewController(withIdentifier: "AdminProjectView") as! AdminProjectCollectionViewController;
             adminProjectView.project = project;
+            navigationItem.title = project.name;
             navigationController?.pushViewController(adminProjectView, animated: false);
         }else {
             let projectView = storyboard?.instantiateViewController(withIdentifier: "ProjectView") as! ProjectViewController;
@@ -46,39 +47,28 @@ class HomeViewController: UITableViewController {
     func isFiltering() -> Bool {
         return searchController.isActive && !searchBarIsEmpty()
     }
-    
-    func setUpNavigationBar() -> Void{
-    
-    }
-    
+
     
    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.barTintColor = UIColor(red: 94/255.0, green: 162/255.0, blue: 175/255.0, alpha: 1.0);
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.tintColor = UIColor.black;
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.view.backgroundColor = .clear
-        navigationController?.navigationBar.tintColor = UIColor.black;
         
-//        navigationController?.navigationBar.clipsToBounds = true;
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Project"
+        searchController.searchBar.searchBarStyle = .minimal;
         searchController.searchBar.setShowsCancelButton(true, animated: false)
         searchController.searchBar.delegate = self;
-        searchController.searchBar.isTranslucent = true
         searchController.searchBar.alpha = 1
-//        searchController.searchBar.setSearchFieldBackgroundImage(UIImage(), for: .normal)
-        searchController.searchBar.barTintColor = UIColor(red: 74/255.0, green: 146/255.0, blue: 161/255.0, alpha: 1.0)
-//        searchController.searchBar.setSearchFieldBackgroundImage(UIImage(), for: .normal)
-//        searchController.searchBar.backgroundColor = UIColor.black;
-        searchController.searchBar.tintColor = UIColor.white;
-//        searchController.searchBar.barTintColor = UIColor(red: 74/255.0, green: 146/255.0, blue: 161/255.0, alpha: 1.0)
-//        (searchController.searchBar.value(forKey: "searchField") as? UITextField)?.textColor = UIColor.black
-//        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(attributes, for: .normal)
+
+        searchController.searchBar.tintColor = UIColor.black;
         
         definesPresentationContext = true
 
@@ -91,13 +81,15 @@ class HomeViewController: UITableViewController {
         
         if(userDefaults.object(forKey: "projects") != nil){
             let decoded  = userDefaults.object(forKey: "projects") as! Data
-            self.projects = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Projects]
+            projects = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Projects]
         }
-        self.getUserProjects(id: self.userDefaults.string(forKey: "id")!);
+        
+        self.getProjects(id: userDefaults.string(forKey: "id")!);
+        
         // Do any additional setup after loading the view.
         
     }
-
+    
     func parseJsonToProject(projectData: Any) -> Projects{
         let project = Projects();
         if let admin = ((projectData as! Dictionary<String, AnyObject>)["admin"] as? Bool) {
@@ -124,39 +116,44 @@ class HomeViewController: UITableViewController {
         if let date = info["finishDate"] as? String {
             project.finishDate = date;
         }
+        if let address = info["address"] as? String {
+            project.address = address;
+        }
         return project;
     }
     
-    func getUserProjects(id: String) -> Void{
-        manager.requestSerializer = AFJSONRequestSerializer();
-        manager.responseSerializer = AFJSONResponseSerializer();
-        manager.get("http://127.0.0.1:8080/planit/projects/selectProjects?id=" + id, parameters: nil, success: { (urlSession:URLSessionDataTask!, response:Any) in
-            let jsonResult = response as! Dictionary<String, AnyObject>;
+    func getProjects(id: String){
+        Alamofire.request("http://127.0.0.1:8080/planit/projects/selectProjects?id=" + id, method: .get, encoding: JSONEncoding.default, headers: ["Content-Type" :"application/json"]).responseJSON { response in
             
-            let json = jsonResult["projects"] as! NSArray;
-            
-            var proj = [Projects]();
-            
-            for projectData in json {
-                let project = self.parseJsonToProject(projectData: projectData);
-                proj.append(project)
+            switch response.result {
+            case .success (let json):
+                
+                let jsonResult = json as! Dictionary<String, AnyObject>;
+                
+                let json = jsonResult["projects"] as! NSArray;
+                
+                var proj = [Projects]();
+                
+                for projectData in json {
+                    let project = self.parseJsonToProject(projectData: projectData);
+                    proj.append(project)
+                }
+                self.projects = proj;
+                
+                let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.projects)
+                self.userDefaults.set(encodedData, forKey: "projects")
+                self.projectsTableView.reloadData()
+                SharedService.shared().internetOn = true;
+                break
+            case .failure(let error):
+                SharedService.shared().internetOn = false;
+                self.projectsTableView.reloadData()
+                print(error)
             }
-            self.projects = proj;
-            
-            let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.projects)
-            self.userDefaults.set(encodedData, forKey: "projects")
-            self.projectsTableView.reloadData()
-            
-        },failure: { (urlSession:URLSessionDataTask!, error:Error!) in
-            print("fail");
-            let error = error as NSError
-            print("Failure, error is \(error.userInfo)")
-            self.projectsTableView.reloadData();
-        })
+        }
     }
     
 
-    
     @objc func HandleRefresh(_ refreshControl: UIRefreshControl) {
         // Code to refresh table view
        guard let id = self.userDefaults.string(forKey: "id")
@@ -164,7 +161,8 @@ class HomeViewController: UITableViewController {
             print("nu se poate boss");
             return;
         }
-        self.getUserProjects(id: id)
+        self.getProjects(id: id);
+        self.projectsTableView.reloadData()
         refreshControl.endRefreshing();
     }
 
@@ -236,6 +234,7 @@ class HomeViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "AddProjectSegue"){
             if let modalView = segue.destination as? AddViewController {
+                
                 modalView.type = "project";
             }
         }

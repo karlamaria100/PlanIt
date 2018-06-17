@@ -1,5 +1,5 @@
 //
-//  UsersTableViewController.swift
+//  TasksTableViewController.swift
 //  PlanIt
 //
 //  Created by Karla Pantelimon on 01/06/2018.
@@ -7,88 +7,76 @@
 //
 
 import UIKit
-import ImageLoader
 
-class UsersTableViewController: UITableViewController {
+
+class TasksTableViewController: UITableViewController {
     
-    @IBOutlet var usersTabelView: UITableView!
-    @IBOutlet var addButton: UIButton!
     
-    var users: [User] = [];
+    @IBOutlet var tasksTableView: UITableView!
+    
+    var tasks: [Task] = [];
     var project = Projects();
     var category = Category();
     let userDefaults = UserDefaults.standard;
-
-    @objc func enableEdit(){
-        print("edit button");
-        
-    }
-    
-    
-    @objc func doAddUser(_ sender: Any) {
-        let categoryView = storyboard?.instantiateViewController(withIdentifier: "AddView") as! AddViewController;
-        categoryView.type = "user";
-        navigationController?.navigationItem.title = ""
-        navigationController?.pushViewController(categoryView, animated: false);
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Users";
-
+        navigationItem.title = "Tasks";
         // Uncomment the following line to preserve selection between presentations
          self.clearsSelectionOnViewWillAppear = false
-        self.getUsersForProject();
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action:nil);
-        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(enableEdit)),UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(doAddUser)), ]
-        
+        self.getTasksForProject();
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    func getUsersForProject() -> Void {
-
+    func getTasksForProject() -> Void {
+    
         
-//        manager.get("http://127.0.0.1:8080/planit/users/getAllUsersForProject?id=" + String(self.project.id), parameters: nil, success: { (urlSession:URLSessionDataTask!, response:Any) in
+//        manager.get("http://127.0.0.1:8080/planit/tasks/getAllTasksForProject?id=" + String(self.project.id), parameters: nil, success: { (urlSession:URLSessionDataTask!, response:Any) in
 //            let jsonResult = response as! Dictionary<String, AnyObject>;
 //
-//            if(jsonResult["users"] != nil){
-//                let json = jsonResult["users"] as! NSArray;
+//            if(jsonResult["tasks"] != nil){
+//                let json = jsonResult["tasks"] as! NSArray;
 //
-//                var usr = [User]();
+//                var tsk = [Task]();
 //
-//                for userData in json {
-//                    let user = self.parseJsonWithData(categoryData: userData);
-//                    usr.append(user)
+//                for taskData in json {
+//                    let task = self.parseJsonWithData(categoryData: taskData);
+//                    tsk.append(task)
 //                }
-//                self.users = usr;
-//            }else{
-//                self.users = [];
+//                self.tasks = tsk;
 //            }
-//
+//            else{
+//                self.tasks = [];
+//            }
 //            //            let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.projects)
 //            //            self.userDefaults.set(encodedData, forKey: "projects")
-//            self.usersTabelView.reloadData()
+//            self.tasksTableView.reloadData()
 //
 //        },failure: { (urlSession:URLSessionDataTask!, error:Error!) in
 //            print("fail");
 //            let error = error as NSError
 //            print("Failure, error is \(error.userInfo)")
-//            self.usersTabelView.reloadData();
+//            self.tasksTableView.reloadData();
 //        })
     }
     
-    func parseJsonWithData(categoryData: Any) -> User{
-        let category = User();
-        if let name = ((categoryData as! Dictionary<String, AnyObject>)["name"] as? String) {
-            category.name = name;
+    func parseJsonWithData(categoryData: Any) -> Task{
+        let category = Task();
+        if let desc = ((categoryData as! Dictionary<String, AnyObject>)["description"] as? String) {
+            category.desc = desc;
         }
         if let id = ((categoryData as! Dictionary<String, AnyObject>)["number"] as? Int32) {
             category.id = id;
         }
-        if let email = ((categoryData as! Dictionary<String, AnyObject>)["email"] as? String) {
-            category.email = email;
+        if let date = ((categoryData as! Dictionary<String, AnyObject>)["date"] as? String) {
+            category.date = date;
         }
-        if let profilePicture = ((categoryData as! Dictionary<String, AnyObject>)["profilePicture"] as? String) {
-            category.profilePicture = profilePicture;
+        if let project = ((categoryData as! Dictionary<String, AnyObject>)["project"] as? Int32) {
+            category.project = project;
+        }
+        if let done = ((categoryData as! Dictionary<String, AnyObject>)["done"] as? Bool) {
+            category.done = done;
         }
         return category;
     }
@@ -107,22 +95,22 @@ class UsersTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.users.count
+        return self.tasks.count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as? UserTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as? TaskTableViewCell
         else {
             fatalError("The dequeued cell is not an instance of ProjectTableViewCell.")
         }
-        var user: User;
-        user = self.users[indexPath.row]
-        cell.nameLabel.text = user.name;
-        cell.profileImage.load.request(with: user.profilePicture);
+        var task: Task;
+        task = self.tasks[indexPath.row]
+        cell.descriptionLabel.text = task.desc;
 
         return cell
     }
+ 
 
     /*
     // Override to support conditional editing of the table view.
@@ -159,16 +147,14 @@ class UsersTableViewController: UITableViewController {
     }
     */
 
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "AddUserSegue"){
-            if let modalView = segue.destination as? AddViewController {
-                modalView.type = "user";
-            }
-        }
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
-
+    */
 
 }
